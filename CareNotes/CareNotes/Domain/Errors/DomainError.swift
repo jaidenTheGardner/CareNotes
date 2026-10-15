@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Lists every way a business operation can fail, with a
+// plain-language message for each.
+
+// Business Rule: Failures are reported as meaningful domain
+// errors and storage level errors are never shown to the user.
+
 import Foundation
 
 nonisolated struct StorageFailure: Equatable, Sendable {

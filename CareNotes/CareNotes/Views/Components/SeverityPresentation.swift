@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Maps severity bands and trend directions to display labels,
+// colours and symbols.
+
+// business Rule: Bands follow the score ranges and each has
+// its own symbol.
+
 import SwiftUI
 
 extension SeverityBand {

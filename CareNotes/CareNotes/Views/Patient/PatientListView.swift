@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Home Screen listing every registered patient.
+
+// Business Rule: A patient must be registered before any
+// condition can be tracked for them.
+
 import SwiftUI
 
 struct PatientListView: View {

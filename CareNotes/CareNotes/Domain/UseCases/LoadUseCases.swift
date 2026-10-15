@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Provides read-only operations that fetch patients, conditions
+// and severity entries for display.
+
+// Business Rule: Active conditions are listed before resolved ones,
+// and severity entries are listed newest first.
+
 import Foundation
 
 nonisolated struct LoadPatientsUseCase: Sendable {

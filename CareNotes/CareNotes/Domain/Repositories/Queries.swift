@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Independantly of a database, describes which conditions or
+// severity entries to fetch.
+
+// Business Rule: Every storage backend must filter and sort identically.
+
 import Foundation
 
 nonisolated enum ConditionStatusFilter: Sendable, Equatable {

@@ -5,6 +5,13 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Loads a condition's entries and trend for its detail screen and
+// carries out resolving it.
+
+// Business Rule: Trend and resolution decisions come from the use
+// cases so the screen never applies business rules itself. A trend
+// needs at least 2 entries in the chosen window.
+
 import Foundation
 import Observation
 

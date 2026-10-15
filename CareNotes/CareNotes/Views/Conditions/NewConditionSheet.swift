@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Form for starting to track a new condition for a patient.
+
+// Business Rule: A condition needs a name and a start date that is
+// not in the future, and a duplicate active condition is rejected.
+
 import SwiftUI
 
 struct NewConditionSheet: View {

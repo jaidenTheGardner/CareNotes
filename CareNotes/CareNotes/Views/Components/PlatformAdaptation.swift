@@ -5,9 +5,14 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Keeps forms and sheets looking the same on iPhone, iPad and Mac
+
+// Business Rule: Every data-entry field shows a clear in-field prompt
+// so users know what to enter on eveyr device.
+
 import SwiftUI
 
-// A text field whose text is always an in-field placeholder (never a side label).
+// A text field thats text is always an in-field placeholder.
 struct FormTextField: View {
     let title: String
     @Binding var text: String

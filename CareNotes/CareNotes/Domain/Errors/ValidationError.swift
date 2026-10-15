@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+//Describes why a piece of raw input was rejected.
+
+// Business Rule: Input that breaks a field rule is
+// rejected rather than saved
+
 import Foundation
 
 nonisolated enum ValidationField: String, Sendable {

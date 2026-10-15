@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+//Composition root that builds every use case from the chosen
+//repositories and closk
+
+// Business Rule: Screens reach patient data only through use cases,
+// not directly through storage, so evey rule is enforced in one place.
+
 import Foundation
 
 struct AppEnvironment {

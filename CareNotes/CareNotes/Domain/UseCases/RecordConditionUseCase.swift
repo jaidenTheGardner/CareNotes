@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Starts tracking a new condition for an existing patient.
+
+// Business Rule: A patient cannot have two active conditions
+// with the same name, and the start date cannot be in the future.
+
 import Foundation
 
 nonisolated struct RecordConditionUseCase: Sendable {

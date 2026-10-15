@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Registers a new patient from user-entered details.
+
+// Business Rule: A patient needs a valid name. A date
+// of birth isn't necessary, but if provided must be valid.
+
 import Foundation
 
 nonisolated struct RegisterPatientUseCase: Sendable {

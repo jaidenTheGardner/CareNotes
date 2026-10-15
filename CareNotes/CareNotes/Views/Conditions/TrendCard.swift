@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Displays whether a condition is improving, stable of worsening, with
+// the supporting averages.
+
+// Business Rule: The trend is always labelled as a summary of logged
+// data and not medical advice.
+
 import SwiftUI
 
 struct TrendCard: View {

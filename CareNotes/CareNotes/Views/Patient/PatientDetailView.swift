@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Lists one patient's conditions, split intoo active and resolved,
+// wth the latest severity for each.
+
+// Business Rule: Active conditions are shown before resolved ones,
+// and resolved conditions stay visible so history is never lost.
+
 import SwiftUI
 
 struct PatientDetailView: View {

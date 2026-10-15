@@ -5,6 +5,9 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// TEMPORARY in-memory storage for patients, conditions and entries
+// until persistence capabilities are added
+
 import Foundation
 
 actor InMemoryCareStore: PatientRepository, ConditionRepository, SeverityEntryRepository {

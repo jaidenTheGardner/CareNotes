@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Defines the storage contracts for patients, conditions and
+// severity entries.
+
+// Business Rule: Business rules don't depend on a particular
+// database, so storage can be swapped without changing rules.
+
 import Foundation
 
 nonisolated protocol PatientRepository: Sendable {

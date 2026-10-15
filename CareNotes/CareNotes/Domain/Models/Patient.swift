@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Represents a person whose conditions are tracked in the app.
+
+// Business Rule: A patient must have a valid name. The date of
+// birth is optional, but must be valid if given.
+
 import Foundation
 
 nonisolated struct Patient: Identifiable, Hashable, Sendable {

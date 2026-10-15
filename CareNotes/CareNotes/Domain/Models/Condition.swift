@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Represents an illness/ affliction being tracked for one patient,
+// either active or resolved.
+
+// Business Rule: A condition can be resolved once and never before
+// its onset date.
+
 import Foundation
 
 nonisolated enum ConditionStatus: Hashable, Sendable {

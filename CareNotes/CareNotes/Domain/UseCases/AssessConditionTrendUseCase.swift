@@ -5,6 +5,13 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Works out whether a condition is improving, stable or worsening
+// by comparing the first and second half of a time window.
+
+// Business Rule: At least 2 entries are needed with a 2-365 day
+// window, as well as an average change of 1 point or more counts
+// as improving or worsening.
+
 import Foundation
 
 nonisolated struct AssessConditionTrendUseCase: Sendable {

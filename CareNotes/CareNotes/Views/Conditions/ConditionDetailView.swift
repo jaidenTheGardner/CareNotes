@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Shares one condition's latest severity, trend, chart and
+// full history of entries.
+
+// Business Rule: A resolved condition cannot receive new
+// entries, and resolving a condition requires confirmation.
+
 import SwiftUI
 import Charts
 

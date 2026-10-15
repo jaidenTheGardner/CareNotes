@@ -5,6 +5,14 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Defines validated types for names, notes, severity scores and
+// birth dates that can be created with valid data.
+
+// Business Rule: Severity is 0-10, names are limited to 100
+// characters, notes to 2,000 and a birth date cannot be in the
+// future or over 130 years ago.
+
+
 import Foundation
 
 nonisolated enum TextRules {

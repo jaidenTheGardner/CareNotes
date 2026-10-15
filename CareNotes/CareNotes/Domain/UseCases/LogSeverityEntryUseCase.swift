@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Records a severity score and optional notes against a condition
+
+// Business Rule: An entry can only be logged for an active condition,
+// not in the future, and not before the condition's start date.
+
 import Foundation
 
 nonisolated struct LogSeverityEntryUseCase: Sendable {

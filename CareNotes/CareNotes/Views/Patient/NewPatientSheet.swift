@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Form for registerig a new patient with a name and optional date
+// of birth.
+
+// Business Rule: A name is required and a date of birth cannot be in
+// the future. The Save button stays disabled until a name is entered.
+
 import SwiftUI
 
 struct NewPatientSheet: View {

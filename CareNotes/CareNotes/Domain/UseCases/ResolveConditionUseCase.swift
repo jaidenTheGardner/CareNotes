@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Marks a condition as resolved while keeping its history.
+
+// Business Rule: A condition can onnly be resolved once and
+// not in the future or before it began.
+
 import Foundation
 
 nonisolated struct ResolveConditionUseCase: Sendable {

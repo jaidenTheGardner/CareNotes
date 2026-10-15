@@ -5,6 +5,8 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Holds the selected condition and the data
+
 import Foundation
 import Observation
 

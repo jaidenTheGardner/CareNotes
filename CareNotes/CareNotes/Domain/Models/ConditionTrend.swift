@@ -5,6 +5,12 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Summarises how a condition's recorded severity changed
+// over a time window.
+
+// Business Rule: A trend only describes the scores that were
+// logged. It is not presented as a diagnosis or medical advice.
+
 import Foundation
 
 nonisolated enum TrendDirection: Sendable, Equatable {

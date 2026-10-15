@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Shows a seveirty score and its band as a compact coloured pill.
+
+// Business Rule: Severity is never shown by colour alone. It also
+// has a symbol and text label.
+
 import SwiftUI
 
 struct SeverityBadge: View {

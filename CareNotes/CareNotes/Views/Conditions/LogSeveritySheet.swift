@@ -5,6 +5,13 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Form for recording a severity score from 0-10, with a time
+// and an optional note.
+
+// Business Rule: The time cannot be in the future or before the
+// condition began, and any rule failure is shown to the user
+// instead of saving.
+
 import SwiftUI
 
 struct LogSeveritySheet: View {

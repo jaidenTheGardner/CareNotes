@@ -5,6 +5,11 @@
 //  Created by Jaiden Gardner on 15/10/2026.
 //
 
+// Represents one dated severity observation for a condition,
+// with an optimal note.
+
+// Business Rule: Every entry belongs to exactly one condition
+// and always carries a valid 0-10 severity score.
 
 import Foundation
 
