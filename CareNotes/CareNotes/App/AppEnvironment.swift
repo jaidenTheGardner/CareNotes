@@ -12,6 +12,7 @@
 // not directly through storage, so evey rule is enforced in one place.
 
 import Foundation
+import SwiftData
 
 struct AppEnvironment {
     let registerPatient: RegisterPatientUseCase
@@ -39,7 +40,13 @@ struct AppEnvironment {
         )
     }
 
-    /// Development wiring; replaced by the SwiftData store in Stage 2.
+    /// Production wiring: every repository is backed by the on-device SwiftData store.
+    static func swiftData(container: ModelContainer) -> AppEnvironment {
+        let store = SwiftDataCareStore(modelContainer: container)
+        return make(patients: store, conditions: store, entries: store)
+    }
+
+    /// Previews and tests only; nothing is saved between launches.
     static func inMemory() -> AppEnvironment {
         let store = InMemoryCareStore()
         return make(patients: store, conditions: store, entries: store)
