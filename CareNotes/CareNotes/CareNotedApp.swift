@@ -32,7 +32,9 @@ struct CareNotesApp: App {
     var body: some Scene {
         WindowGroup {
             if let environment {
-                RootView(environment: environment)
+                SplashContainer {
+                    RootView(environment: environment)
+                }
             } else {
                 StoreUnavailableView()
             }
