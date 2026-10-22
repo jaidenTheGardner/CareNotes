@@ -17,9 +17,13 @@ struct PatientDetailView: View {
     let environment: AppEnvironment
     @State private var model: PatientDetailViewModel
     @State private var isPresentingNew = false
+    @State private var isEditingPatient = false
+    /// Tells the patient list to refresh after an edit.
+    private let onPatientChanged: () -> Void
 
-    init(environment: AppEnvironment, patient: Patient) {
+    init(environment: AppEnvironment, patient: Patient, onPatientChanged: @escaping () -> Void = {}) {
         self.environment = environment
+        self.onPatientChanged = onPatientChanged
         _model = State(initialValue: PatientDetailViewModel(environment: environment, patient: patient))
     }
 
@@ -61,6 +65,19 @@ struct PatientDetailView: View {
             ToolbarItem(placement: .primaryAction) {
                 Button { isPresentingNew = true } label: {
                     Label("Add Condition", systemImage: "plus")
+                }
+            }
+            ToolbarItem(placement: .primaryAction) {
+                Button { isEditingPatient = true } label: {
+                    Label("Edit Patient", systemImage: "pencil")
+                }
+            }
+        }
+        .sheet(isPresented: $isEditingPatient) {
+            NewPatientSheet(environment: environment, patient: model.patient) {
+                Task {
+                    await model.reloadPatient()
+                    onPatientChanged()
                 }
             }
         }
