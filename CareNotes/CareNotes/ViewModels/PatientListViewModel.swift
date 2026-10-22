@@ -25,6 +25,7 @@ final class PatientListViewModel {
         defer { isLoading = false }
         do {
             patients = try await environment.loadPatients.execute()
+            CareNotesWidgetPublisher.publish(patientCount: patients.count)
         } catch {
             errorMessage = error.localizedDescription
         }
