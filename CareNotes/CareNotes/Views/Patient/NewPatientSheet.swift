@@ -15,6 +15,7 @@ import SwiftUI
 
 struct NewPatientSheet: View {
     let environment: AppEnvironment
+    let patient: Patient?
     let onSaved: () -> Void
 
     @Environment(\.dismiss) private var dismiss
@@ -23,6 +24,17 @@ struct NewPatientSheet: View {
     @State private var birthDate = Calendar.current.date(byAdding: .year, value: -30, to: .now) ?? .now
     @State private var errorMessage: String?
     @State private var isSaving = false
+    
+    init(environment: AppEnvironment, patient: Patient? = nil, onSaved: @escaping () -> Void) {
+        self.environment = environment
+        self.patient = patient
+        self.onSaved = onSaved
+        _name = State(initialValue: patient?.name.value ?? "")
+        _includesBirthDate = State(initialValue: patient?.birthDate != nil)
+        if let existing = patient?.birthDate?.value {
+            _birthDate = State(initialValue: existing)
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -46,8 +58,7 @@ struct NewPatientSheet: View {
                     }
                 }
             }
-            .navigationTitle("New Patient")
-            .toolbar {
+            .navigationTitle(patient == nil ? "New Patient" : "Edit Patient")            .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                 }
@@ -64,9 +75,16 @@ struct NewPatientSheet: View {
         errorMessage = nil
         Task {
             do {
-                _ = try await environment.registerPatient.execute(
-                    .init(name: name, dateOfBirth: includesBirthDate ? birthDate : nil)
-                )
+                let dateOfBirth = includesBirthDate ? birthDate : nil
+                if let patient {
+                    _ = try await environment.updatePatient.execute(
+                        .init(patientID: patient.id, name: name, dateOfBirth: dateOfBirth)
+                    )
+                } else {
+                    _ = try await environment.registerPatient.execute(
+                        .init(name: name, dateOfBirth: dateOfBirth)
+                    )
+                }
                 onSaved()
                 dismiss()
             } catch {
