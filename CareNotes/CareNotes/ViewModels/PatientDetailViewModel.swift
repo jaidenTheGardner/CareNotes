@@ -33,6 +33,17 @@ final class PatientDetailViewModel {
         }
     }
     
+    /// Returns true when the patient was deleted, so the screen can close.
+    func delete() async -> Bool {
+        do {
+            try await environment.deletePatient.execute(patientID: patient.id)
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
+    
     var activeConditions: [Condition] { conditions.filter(\.isActive) }
     var resolvedConditions: [Condition] { conditions.filter { !$0.isActive } }
 

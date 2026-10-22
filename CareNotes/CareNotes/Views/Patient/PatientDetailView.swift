@@ -18,7 +18,9 @@ struct PatientDetailView: View {
     @State private var model: PatientDetailViewModel
     @State private var isPresentingNew = false
     @State private var isEditingPatient = false
-    /// Tells the patient list to refresh after an edit.
+    @State private var isConfirmingDelete = false
+    @Environment(\.dismiss) private var dismiss
+ 
     private let onPatientChanged: () -> Void
 
     init(environment: AppEnvironment, patient: Patient, onPatientChanged: @escaping () -> Void = {}) {
@@ -72,9 +74,30 @@ struct PatientDetailView: View {
                     Label("Edit Patient", systemImage: "pencil")
                 }
             }
+            ToolbarItem(placement: .primaryAction) {
+                Button(role: .destructive) { isConfirmingDelete = true } label: {
+                    Label("Delete Patient", systemImage: "trash")
+                }
+                .tint(.red)
+            }
         }
-        .sheet(isPresented: $isEditingPatient) {
-            NewPatientSheet(environment: environment, patient: model.patient) {
+        
+            .confirmationDialog("Delete \(model.patient.name.value)?",
+                                isPresented: $isConfirmingDelete,
+                                titleVisibility: .visible) {
+                Button("Delete Patient", role: .destructive) {
+                    Task {
+                        if await model.delete() {
+                            onPatientChanged()
+                            dismiss()
+                        }
+                    }
+                }
+            } message: {
+                Text("This permanently deletes their conditions and severity history. This can't be undone.")
+            }
+            .sheet(isPresented: $isEditingPatient) {
+              NewPatientSheet(environment: environment, patient: model.patient) {
                 Task {
                     await model.reloadPatient()
                     onPatientChanged()
