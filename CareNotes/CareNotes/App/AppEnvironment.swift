@@ -16,6 +16,8 @@ import SwiftData
 
 struct AppEnvironment {
     let registerPatient: RegisterPatientUseCase
+    let updatePatient: UpdatePatientUseCase
+    let deletePatient: DeletePatientUseCase
     let recordCondition: RecordConditionUseCase
     let logSeverityEntry: LogSeverityEntryUseCase
     let resolveCondition: ResolveConditionUseCase
@@ -30,6 +32,8 @@ struct AppEnvironment {
                      dates: any DateProviding = SystemDateProvider()) -> AppEnvironment {
         AppEnvironment(
             registerPatient: RegisterPatientUseCase(patients: patients, dates: dates),
+            updatePatient: UpdatePatientUseCase(patients: patients, dates: dates),
+            deletePatient: DeletePatientUseCase(patients: patients),
             recordCondition: RecordConditionUseCase(patients: patients, conditions: conditions, dates: dates),
             logSeverityEntry: LogSeverityEntryUseCase(conditions: conditions, entries: entries, dates: dates),
             resolveCondition: ResolveConditionUseCase(conditions: conditions, dates: dates),

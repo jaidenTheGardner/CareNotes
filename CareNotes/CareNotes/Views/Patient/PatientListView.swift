@@ -44,8 +44,9 @@ struct PatientListView: View {
             }
             .navigationTitle("Patients")
             .navigationDestination(for: Patient.self) { patient in
-                PatientDetailView(environment: environment, patient: patient)
-            }
+                PatientDetailView(environment: environment, patient: patient) {
+                    Task { await model.load() }
+                }            }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button { isPresentingNew = true } label: {

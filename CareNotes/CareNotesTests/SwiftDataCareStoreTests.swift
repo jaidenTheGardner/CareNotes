@@ -151,4 +151,5 @@ private struct FailingPatientRepository: PatientRepository {
     func patient(withID id: Patient.ID) async throws -> Patient? { throw DiskFull() }
     func allPatients() async throws -> [Patient] { throw DiskFull() }
     func save(_ patient: Patient) async throws { throw DiskFull() }
+    func delete(_ id: Patient.ID) async throws { throw DiskFull() }
 }

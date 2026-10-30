@@ -22,6 +22,12 @@ actor InMemoryCareStore: PatientRepository, ConditionRepository, SeverityEntryRe
     }
     func save(_ patient: Patient) async throws { patientsByID[patient.id] = patient }
 
+    func delete(_ id: Patient.ID) async throws {
+        let conditionIDs = Set(conditionsByID.values.filter { $0.patientID == id }.map(\.id))
+        entriesByID = entriesByID.filter { !conditionIDs.contains($0.value.conditionID) }
+        conditionsByID = conditionsByID.filter { !conditionIDs.contains($0.key) }
+        patientsByID[id] = nil
+    }
     // ConditionRepository
     func condition(withID id: Condition.ID) async throws -> Condition? { conditionsByID[id] }
     func conditions(matching query: ConditionQuery) async throws -> [Condition] {

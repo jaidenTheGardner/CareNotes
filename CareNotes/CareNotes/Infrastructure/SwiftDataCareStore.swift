@@ -49,6 +49,13 @@ actor SwiftDataCareStore: ModelActor, PatientRepository, ConditionRepository, Se
         try commit()
     }
 
+    func delete(_ id: Patient.ID) async throws {
+        guard let record = try patientRecord(id.rawValue) else { return }
+        // Cascade rules on the relationships remove the patient's conditions and entries.
+        modelContext.delete(record)
+        try commit()
+    }
+    
     // MARK: - ConditionRepository
 
     func condition(withID id: Condition.ID) async throws -> Condition? {

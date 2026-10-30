@@ -17,8 +17,8 @@ nonisolated protocol PatientRepository: Sendable {
     func patient(withID id: Patient.ID) async throws -> Patient?
     func allPatients() async throws -> [Patient]
     func save(_ patient: Patient) async throws
+    func delete(_ id: Patient.ID) async throws
 }
-
 nonisolated protocol ConditionRepository: Sendable {
     func condition(withID id: Condition.ID) async throws -> Condition?
     func conditions(matching query: ConditionQuery) async throws -> [Condition]

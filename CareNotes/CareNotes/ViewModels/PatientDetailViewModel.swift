@@ -13,8 +13,7 @@ import Observation
 @Observable
 final class PatientDetailViewModel {
     private let environment: AppEnvironment
-    let patient: Patient
-
+    private(set) var patient: Patient
     var conditions: [Condition] = []
     var latestEntries: [Condition.ID: SeverityEntry] = [:]
     var errorMessage: String?
@@ -24,6 +23,27 @@ final class PatientDetailViewModel {
         self.patient = patient
     }
 
+    /// Re-reads the patient after an edit so the title and details stay current.
+    func reloadPatient() async {
+        do {
+            let all = try await environment.loadPatients.execute()
+            if let fresh = all.first(where: { $0.id == patient.id }) { patient = fresh }
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+    
+    /// Returns true when the patient was deleted, so the screen can close.
+    func delete() async -> Bool {
+        do {
+            try await environment.deletePatient.execute(patientID: patient.id)
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
+    
     var activeConditions: [Condition] { conditions.filter(\.isActive) }
     var resolvedConditions: [Condition] { conditions.filter { !$0.isActive } }
 
